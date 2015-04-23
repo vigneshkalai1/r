@@ -7,24 +7,65 @@
 # 4 getInverse     get the cahced value (inverse of the matrix)
 
 makeCacheMatrix <- function(x = matrix()) {
-    m <- NULL
-    set <- function(y) {
-        x <<- y
-        m <<- NULL
-    }
-    get <- function() x
-    setinverse<- function(mean) m <<- mean
-    getinverse <- function() m
-    list(set = set, get = get,setinverse = setinverse, getinverse = getinverse)
+        m <- NULL
+        
+        #This function sets the matrix
+        
+        set <- function(y) {
+                x <<- y
+                
+                #Since new matrix is created old cached inverse matrix is flushed 
+                m <<- NULL
+                
+        }
+        
+        #This function is used to get the matrix 
+        
+        get <- function()
+        {
+                x
+        }
+        #Caches the given inverse matrix
+        
+        setinverse<- function(mean)
+        {
+                m <<- mean
+        }
+        
+        #Returns the cached inverse matrix 
+        
+        getinverse <- function()
+        {
+                m
+        }
+        
+        #Returns the list of function
+        
+        list(set = set, get = get,setinverse = setinverse, getinverse = getinverse)
 }
+
+#The cacheSolve is used to get cached inverse matrix or if not available create one 
+
 cacheSolve <- function(x) {
-    m <- x$getinverse()
-    if(!is.null(m)) {
-        message("getting cached Matrixdata")
-        return(m)
-    }
-    data <- x$get()
-    m <- solve(data)
-    x$setinverse(m)
-    m
+
+        # get the cached value
+        
+        m <- x$getinverse()
+        
+        # if a cached value exists return it
+        
+        if(!is.null(m)) {
+                message("getting cached Matrixdata")
+                return(m)
+        }
+        
+        # otherwise get the matrix, caclulate the inverse and store in the cache
+        
+        data <- x$get()
+        m <- solve(data)
+        x$setinverse(m)
+        
+        #Returns the cached inverse matrix 
+        
+        m
 }
