@@ -60,3 +60,8 @@ without arguments.
 	#> [,1]        [,2]
 	#> [1,] -1.1818182  1.09090909
 	#> [2,]  0.1818182 -0.09090909
+## Data Science Specialization
+
+* Uses R
+* Nine courses
+* Goes from raw data to data products
